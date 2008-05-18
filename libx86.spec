@@ -51,7 +51,11 @@ This package contains the development files for %{name}.
 %setup -q
 
 %build
+%ifarch %ix86
 %make
+%else
+%make BACKEND=x86emu
+%endif
 
 %install
 rm -rf %{buildroot}
