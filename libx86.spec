@@ -59,7 +59,7 @@ This package contains the development files for %{name}.
 
 %install
 rm -rf %{buildroot}
-make DESTDIR=%{buildroot} install
+make DESTDIR=%{buildroot} LIBDIR=%{_libdir} install
 chmod 0644 %{buildroot}%{_libdir}/libx86.a
 
 %clean
