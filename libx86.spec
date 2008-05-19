@@ -1,6 +1,6 @@
 %define name	libx86
-%define version	1.0
-%define release	%mkrel 2
+%define version	1.1
+%define release	%mkrel 1
 %define major	1
 %define libname	%mklibname x86 %{nil} %{major}
 %define develname	%mklibname x86 -d
@@ -59,12 +59,8 @@ This package contains the development files for %{name}.
 
 %install
 rm -rf %{buildroot}
-# make install is buggy in 1.0
-mkdir -p %{buildroot}%{_libdir}
-cp -a libx86.so.%{major} libx86.a %{buildroot}%{_libdir}
-ln -s %{_libdir}/libx86.so.%{major} %{buildroot}%{_libdir}/libx86.so
-install -D lrmi.h %{buildroot}%{_includedir}/libx86.h
-chmod 0644 %{buildroot}%{_includedir}/libx86.h
+make DESTDIR=%{buildroot} install
+chmod 0644 %{buildroot}%{_libdir}/libx86.a
 
 %clean
 rm -rf %{buildroot}
