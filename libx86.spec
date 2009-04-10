@@ -12,6 +12,7 @@ Summary:	Hardware-independent library for executing real-mode x86 code
 Group:		System/Libraries
 URL:		http://www.codon.org.uk/~mjg59/libx86/
 Source:		http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.gz
+Patch0:		libx86-0.99-ifmask.patch
 License:	GPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
@@ -49,12 +50,13 @@ This package contains the development files for %{name}.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %ifarch %ix86
-%make
+%make CFLAGS="%{optflags}"
 %else
-%make BACKEND=x86emu
+%make BACKEND=x86emu CFLAGS="%{optflags}"
 %endif
 
 %install
