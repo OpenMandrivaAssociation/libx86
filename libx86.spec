@@ -56,7 +56,7 @@ This package contains the development files for %{name}.
 %ifarch %ix86
 %make CFLAGS="%{optflags}"
 %else
-%make BACKEND=x86emu CFLAGS="%{optflags}"
+%make BACKEND=x86emu CFLAGS="%{optflags} -fPIC"
 %endif
 
 %install
