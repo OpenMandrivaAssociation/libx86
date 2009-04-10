@@ -1,6 +1,6 @@
 %define name	libx86
 %define version	1.1
-%define release	%mkrel 3
+%define release	%mkrel 4
 %define major	1
 %define libname	%mklibname x86 %{nil} %{major}
 %define develname	%mklibname x86 -d
