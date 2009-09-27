@@ -1,6 +1,6 @@
 %define name	libx86
 %define version	1.1
-%define release	%mkrel 5
+%define release	%mkrel 6
 %define major	1
 %define libname	%mklibname x86 %{nil} %{major}
 %define develname	%mklibname x86 -d
@@ -15,7 +15,7 @@ Source:		http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.
 Patch0:		libx86-0.99-ifmask.patch
 License:	GPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
-ExclusiveArch:	%{ix86}
+ExclusiveArch:	%{ix86} x86_64
 
 %description
 It's often useful to be able to make real-mode x86 BIOS calls from userland.
