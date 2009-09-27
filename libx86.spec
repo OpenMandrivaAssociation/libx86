@@ -15,6 +15,7 @@ Source:		http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.
 Patch0:		libx86-0.99-ifmask.patch
 License:	GPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
+ExclusiveArch:	%{ix86}
 
 %description
 It's often useful to be able to make real-mode x86 BIOS calls from userland.
