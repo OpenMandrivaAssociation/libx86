@@ -15,7 +15,7 @@ Group:		System/Libraries
 URL:		http://www.codon.org.uk/~mjg59/libx86/
 Source:		http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.gz
 Patch0:		libx86-0.99-ifmask.patch
-License:	GPL
+License:	MIT
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:	%{ix86} x86_64
 %if %{with uclibc}
