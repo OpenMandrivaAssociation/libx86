@@ -1,15 +1,12 @@
-%define name	libx86
-%define version	1.1
-%define release	%mkrel 7
 %define major	1
 %define libname	%mklibname x86 %{nil} %{major}
 %define develname	%mklibname x86 -d
 
 %bcond_without	uclibc
 
-Name:		%name
-Version:	%version
-Release:	%release
+Name:		libx86
+Version:	1.1
+Release:	7
 Summary:	Hardware-independent library for executing real-mode x86 code
 Group:		System/Libraries
 URL:		http://www.codon.org.uk/~mjg59/libx86/
@@ -30,11 +27,11 @@ help on other platforms.
 libx86 provides the lrmi interface, but will also run on platforms such as
 amd64 and alpha.
 
-%package -n %{libname}
+%package -n	%{libname}
 Summary:	Hardware-independent library for executing real-mode x86 code
 Group:		System/Libraries
 
-%description -n %{libname}
+%description -n	%{libname}
 It's often useful to be able to make real-mode x86 BIOS calls from userland.
 lrmi provides a simple interface to this for x86 machines, but this doesn't
 help on other platforms.
@@ -45,13 +42,13 @@ amd64 and alpha.
 This package contains the library needed to run programs dynamically
 linked with %{name}.
 
-%package -n %{develname}
+%package -n	%{develname}
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
+%description -n	%{develname}
 This package contains the development files for %{name}.
 
 %prep
