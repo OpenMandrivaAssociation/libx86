@@ -1,9 +1,11 @@
 %define name	libx86
 %define version	1.1
-%define release	%mkrel 6
+%define release	%mkrel 7
 %define major	1
 %define libname	%mklibname x86 %{nil} %{major}
 %define develname	%mklibname x86 -d
+
+%bcond_without	uclibc
 
 Name:		%name
 Version:	%version
@@ -16,6 +18,9 @@ Patch0:		libx86-0.99-ifmask.patch
 License:	GPL
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 ExclusiveArch:	%{ix86} x86_64
+%if %{with uclibc}
+BuildRequires:	uClibc-devel
+%endif
 
 %description
 It's often useful to be able to make real-mode x86 BIOS calls from userland.
@@ -54,6 +59,17 @@ This package contains the development files for %{name}.
 %patch0 -p0
 
 %build
+%if %{with uclibc}
+%ifarch %ix86
+%make CC=%{uclibc_cc} CFLAGS="%{uclibc_cflags}" static
+%else
+%make CC=%{uclibc_cc} BACKEND=x86emu CFLAGS="%{uclibc_cflags} -fPIC" static
+%endif
+mkdir -p uclibc
+mv -f libx86.a uclibc/libx86.a
+make clean
+%endif
+
 %ifarch %ix86
 %make CFLAGS="%{optflags}"
 %else
@@ -64,6 +80,9 @@ This package contains the development files for %{name}.
 rm -rf %{buildroot}
 make DESTDIR=%{buildroot} LIBDIR=%{_libdir} install
 chmod 0644 %{buildroot}%{_libdir}/libx86.a
+%if %{with uclibc}
+install -m644 uclibc/libx86.a -D %{buildroot}%{uclibc_root}%{_libdir}/libx86.a
+%endif
 
 %clean
 rm -rf %{buildroot}
@@ -83,6 +102,9 @@ rm -rf %{buildroot}
 %files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libx86.a
+%if %{with uclibc}
+%{uclibc_root}%{_libdir}/libx86.a
+%endif
 %{_libdir}/libx86.so
 %{_includedir}/libx86.h
 
