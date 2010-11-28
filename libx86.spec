@@ -6,7 +6,7 @@
 
 Name:		libx86
 Version:	1.1
-Release:	%mkrel 7
+Release:	%mkrel 8
 Summary:	Hardware-independent library for executing real-mode x86 code
 Group:		System/Libraries
 URL:		http://www.codon.org.uk/~mjg59/libx86/
