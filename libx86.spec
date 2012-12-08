@@ -105,3 +105,51 @@ rm -rf %{buildroot}
 %{_libdir}/libx86.so
 %{_includedir}/libx86.h
 
+
+
+%changelog
+* Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 1.1-9mdv2011.0
++ Revision: 661556
+- mass rebuild
+
+* Sun Nov 28 2010 Oden Eriksson <oeriksson@mandriva.com> 1.1-8mdv2011.0
++ Revision: 602618
+- rebuild
+
+* Sat Dec 05 2009 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.1-7mdv2010.1
++ Revision: 473683
+- cosmetics...
+- correct license tag
+- build uclibc linked static library
+
+* Sun Sep 27 2009 Olivier Blin <oblin@mandriva.com> 1.1-6mdv2010.0
++ Revision: 450113
+- build on x86_64 too
+- build on ix86 only (from Arnaud Patard)
+
+* Wed Sep 02 2009 Christophe Fergeau <cfergeau@mandriva.com> 1.1-5mdv2010.0
++ Revision: 425881
+- rebuild
+
+* Fri Apr 10 2009 Funda Wang <fwang@mandriva.org> 1.1-4mdv2009.1
++ Revision: 365805
+- use fpic
+- fix ifmask (patch from gentoo)
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild early 2009.0 package (before pixel changes)
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Mon May 19 2008 Pascal Terjan <pterjan@mandriva.org> 1.1-2mdv2009.0
++ Revision: 209214
+- Fix make install on x86_64
+- Update to 1.1
+
+* Mon May 19 2008 Pascal Terjan <pterjan@mandriva.org> 1.0-2mdv2009.0
++ Revision: 208851
+- Fix build on non x86
+- First version of the package
+
+
