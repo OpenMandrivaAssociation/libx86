@@ -73,7 +73,7 @@ make clean
 %endif
 
 %install
-%makeinstall_std
+%makeinstall_std LIBDIR=%{_libdir}
 chmod 0644 %{buildroot}%{_libdir}/libx86.a
 %if %{with uclibc}
 install -m644 uclibc/libx86.a -D %{buildroot}%{uclibc_root}%{_libdir}/libx86.a
