@@ -15,7 +15,9 @@ Source0:	http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.
 Patch0:		libx86-0.99-ifmask.patch
 # (RH/Dave Airlie):
 Patch1:		libx86-add-pkgconfig.patch
-ExclusiveArch:	%{ix86} x86_64
+# does not build on ppc, ppc64 and s390* yet, due to the lack of port i/o
+# redirection and video routing
+ExcludeArch:    ppc ppc64 s390 s390x %{sparcx}
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
 %endif
