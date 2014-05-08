@@ -7,12 +7,14 @@
 Summary:	Hardware-independent library for executing real-mode x86 code
 Name:		libx86
 Version:	1.1
-Release:	14
+Release:	15
 Group:		System/Libraries
 License:	MIT
 Url:		http://www.codon.org.uk/~mjg59/libx86/
 Source0:	http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.gz
 Patch0:		libx86-0.99-ifmask.patch
+# (RH/Dave Airlie):
+Patch1:		libx86-add-pkgconfig.patch
 ExclusiveArch:	%{ix86} x86_64
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
@@ -53,6 +55,7 @@ This package contains the development files for %{name}.
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p1
 
 %build
 %if %{with uclibc}
@@ -90,4 +93,4 @@ install -m644 uclibc/libx86.a -D %{buildroot}%{uclibc_root}%{_libdir}/libx86.a
 %endif
 %{_libdir}/libx86.so
 %{_includedir}/libx86.h
-
+%{_libdir}/pkgconfig/x86.pc
