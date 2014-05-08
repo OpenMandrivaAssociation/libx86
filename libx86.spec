@@ -56,20 +56,21 @@ This package contains the development files for %{name}.
 %setup -q
 %patch0 -p0
 %patch1 -p1
+mkdir .uclibc
+cp -a * .uclibc
 
 %build
 %if %{with uclibc}
-%ifarch %ix86
+pushd .uclibc
+%ifarch %{ix86}
 %make CC=%{uclibc_cc} CFLAGS="%{uclibc_cflags}" static
 %else
 %make CC=%{uclibc_cc} BACKEND=x86emu CFLAGS="%{uclibc_cflags} -fPIC" static
 %endif
-mkdir -p uclibc
-mv -f libx86.a uclibc/libx86.a
-make clean
+popd
 %endif
 
-%ifarch %ix86
+%ifarch %{ix86}
 %make CFLAGS="%{optflags}"
 %else
 %make BACKEND=x86emu CFLAGS="%{optflags} -fPIC"
@@ -79,7 +80,7 @@ make clean
 %makeinstall_std LIBDIR=%{_libdir}
 chmod 0644 %{buildroot}%{_libdir}/libx86.a
 %if %{with uclibc}
-install -m644 uclibc/libx86.a -D %{buildroot}%{uclibc_root}%{_libdir}/libx86.a
+install -p -m644 .uclibc/libx86.a -D %{buildroot}%{uclibc_root}%{_libdir}/libx86.a
 %endif
 
 %files -n %{libname}
