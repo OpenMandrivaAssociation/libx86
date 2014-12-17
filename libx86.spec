@@ -1,5 +1,5 @@
 %define major	1
-%define libname	%mklibname x86 %{nil} %{major}
+%define libname	%mklibname x86 %{major}
 %define devname	%mklibname x86 -d
 
 %bcond_without	uclibc
@@ -7,7 +7,7 @@
 Summary:	Hardware-independent library for executing real-mode x86 code
 Name:		libx86
 Version:	1.1
-Release:	18
+Release:	19
 Group:		System/Libraries
 License:	MIT
 Url:		http://www.codon.org.uk/~mjg59/libx86/
