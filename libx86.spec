@@ -7,7 +7,7 @@
 Summary:	Hardware-independent library for executing real-mode x86 code
 Name:		libx86
 Version:	1.1
-Release:	20
+Release:	21
 Group:		System/Libraries
 License:	MIT
 Url:		http://www.codon.org.uk/~mjg59/libx86/
