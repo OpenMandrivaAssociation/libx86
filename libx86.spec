@@ -10,12 +10,16 @@ Group:		System/Libraries
 License:	MIT
 Url:		http://www.codon.org.uk/~mjg59/libx86/
 Source0:	http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.gz
-Patch0:		libx86-0.99-ifmask.patch
-# (RH/Dave Airlie):
-Patch1:		libx86-add-pkgconfig.patch
+Patch0:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-add-pkgconfig.patch
+Patch1:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-mmap-offset.patch
+# patch from  https://bugs.debian.org/cgi-bin/bugreport.cgi?msg=34;filename=libx86-libc-test.patch.txt;att=1;bug=570676
+# debian control portion removed as it fails to apply and we do not need it anyway
+Patch2:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-libc-test.patch
+Patch3:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-fix_processor_flags.patch
+Patch4:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-ld_flags.patch
 # does not build on ppc, ppc64 and s390* yet, due to the lack of port i/o
 # redirection and video routing
-ExcludeArch:    ppc ppc64 s390 s390x %{sparcx}
+ExcludeArch:    ppc ppc64 s390 s390x %{sparcx} %{armx}
 
 %description
 It's often useful to be able to make real-mode x86 BIOS calls from userland.
@@ -50,19 +54,14 @@ Provides:	%{name}-devel = %{version}-%{release}
 This package contains the development files for %{name}.
 
 %prep
-%setup -q
-%patch0 -p0
-%patch1 -p1
+%autosetup -p1
 
 %build
-%ifarch %{ix86}
-%make CFLAGS="%{optflags}"
-%else
-%make BACKEND=x86emu CFLAGS="%{optflags} -fPIC"
-%endif
+%set_build_flags
+%make_build BACKEND=x86emu CFLAGS="%{optflags} -fPIC"
 
 %install
-%makeinstall_std LIBDIR=%{_libdir}
+%make_install LIBDIR=%{_libdir}
 chmod 0644 %{buildroot}%{_libdir}/libx86.a
 
 %files -n %{libname}
