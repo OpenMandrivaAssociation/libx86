@@ -8,7 +8,7 @@ Version:	1.1
 Release:	26
 Group:		System/Libraries
 License:	MIT
-Url:		http://www.codon.org.uk/~mjg59/libx86/
+Url:		https://www.codon.org.uk/~mjg59/libx86/
 Source0:	http://www.codon.org.uk/~mjg59/libx86/downloads/%{name}-%{version}.tar.gz
 Patch0:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-add-pkgconfig.patch
 Patch1:		https://src.fedoraproject.org/rpms/libx86/raw/rawhide/f/libx86-mmap-offset.patch
